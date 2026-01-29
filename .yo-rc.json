@@ -1,0 +1,33 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "authenticationType": "jwt",
+    "baseName": "medSlot",
+    "buildTool": "maven",
+    "cacheProvider": "no",
+    "clientFramework": "angular",
+    "clientTestFrameworks": [],
+    "clientTheme": "none",
+    "creationTimestamp": 1769670463327,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "enableHibernateCache": null,
+    "enableTranslation": true,
+    "entities": [],
+    "feignClient": null,
+    "jhipsterVersion": "8.11.0",
+    "jwtSecretKey": "MjhhMzhiMTViMjQ1NjU2YWVhNmQwYmFjOGVhYWMyYjI1MmRiOTE2Njg2NzM0ZDMwNGJiOGM2NzRiYjAzNTkyZTI5MjA2Y2NlM2NiNGNlOWVlZjcyNTdmMDA4ODMyZWM2MzJiMTBkZTYzNzU3YTViZmJiZWE3ZTI3YzlmOTgxYjc=",
+    "languages": ["ru", "uz-Cyrl-uz", "uz-Latn-uz"],
+    "microfrontend": null,
+    "microfrontends": [],
+    "nativeLanguage": "ru",
+    "packageName": "com.med.slot",
+    "prodDatabaseType": "postgresql",
+    "reactive": false,
+    "serverPort": null,
+    "serviceDiscoveryType": null,
+    "syncUserWithIdp": null,
+    "testFrameworks": [],
+    "withAdminUi": true
+  }
+}

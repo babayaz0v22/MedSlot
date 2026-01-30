@@ -1,0 +1,10 @@
+{
+  "medSlotApp": {
+    "SmsStatus": {
+      "null": "",
+      "PENDING": "PENDING",
+      "SENT": "SENT",
+      "FAILED": "FAILED"
+    }
+  }
+}

@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (smsNotification(); as smsNotificationRef) {
+      <div>
+        <h2 data-cy="smsNotificationDetailsHeading">
+          <span jhiTranslate="medSlotApp.smsNotification.detail.title">Sms Notification</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ smsNotificationRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="medSlotApp.smsNotification.phone">Phone</span></dt>
+          <dd>
+            <span>{{ smsNotificationRef.phone }}</span>
+          </dd>
+          <dt><span jhiTranslate="medSlotApp.smsNotification.message">Message</span></dt>
+          <dd>
+            <span>{{ smsNotificationRef.message }}</span>
+          </dd>
+          <dt><span jhiTranslate="medSlotApp.smsNotification.sendAt">Send At</span></dt>
+          <dd>
+            <span>{{ smsNotificationRef.sendAt | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="medSlotApp.smsNotification.sentAt">Sent At</span></dt>
+          <dd>
+            <span>{{ smsNotificationRef.sentAt | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="medSlotApp.smsNotification.status">Status</span></dt>
+          <dd>
+            <span [jhiTranslate]="'medSlotApp.SmsStatus.' + (smsNotificationRef.status ?? 'null')">{{
+              { null: '', PENDING: 'PENDING', SENT: 'SENT', FAILED: 'FAILED' }[smsNotificationRef.status ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="medSlotApp.smsNotification.errorMessage">Error Message</span></dt>
+          <dd>
+            <span>{{ smsNotificationRef.errorMessage }}</span>
+          </dd>
+          <dt><span jhiTranslate="medSlotApp.smsNotification.clinic">Clinic</span></dt>
+          <dd>
+            @if (smsNotification()!.clinic) {
+              <div>
+                <a [routerLink]="['/clinic', smsNotification()!.clinic?.id, 'view']">{{ smsNotificationRef.clinic?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="medSlotApp.smsNotification.appointment">Appointment</span></dt>
+          <dd>
+            @if (smsNotification()!.appointment) {
+              <div>
+                <a [routerLink]="['/appointment', smsNotification()!.appointment?.id, 'view']">{{ smsNotificationRef.appointment?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Назад</span>
+        </button>
+
+        <button type="button" [routerLink]="['/sms-notification', smsNotificationRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Изменить</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

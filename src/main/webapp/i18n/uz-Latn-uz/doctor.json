@@ -1,0 +1,28 @@
+{
+  "medSlotApp": {
+    "doctor": {
+      "home": {
+        "title": "Doctors",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Yangi Doctor qo`shish",
+        "createOrEditLabel": "Doctorni tahrirlash",
+        "notFound": "No Doctors found"
+      },
+      "created": "Doctor {{ param }} bilan qo`shildi",
+      "updated": "{{ param }}- Doctor saqlandi",
+      "deleted": "{{ param }}- Doctor o`chirildi",
+      "delete": {
+        "question": "{{ id }}- Doctorni o`chirmoqchimisiz? "
+      },
+      "detail": {
+        "title": "Doctor"
+      },
+      "id": "ID",
+      "specialty": "Specialty",
+      "phone": "Phone",
+      "doctorSchedule": "Doctor Schedule",
+      "appointment": "Appointment",
+      "clinic": "Clinic"
+    }
+  }
+}

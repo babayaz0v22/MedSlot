@@ -1,0 +1,27 @@
+{
+  "medSlotApp": {
+    "doctorSchedule": {
+      "home": {
+        "title": "Doctor Schedules",
+        "refreshListLabel": "Обновить список",
+        "createLabel": "Создать новый Doctor Schedule",
+        "createOrEditLabel": "Создать или отредактировать Doctor Schedule",
+        "notFound": "Doctor Schedules не найдено"
+      },
+      "created": "Новый Doctor Schedule создан с идентификатором {{ param }}",
+      "updated": "Doctor Schedule обновлен с идентификатором {{ param }}",
+      "deleted": "Doctor Schedule удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Doctor Schedule {{ id }}?"
+      },
+      "detail": {
+        "title": "Doctor Schedule"
+      },
+      "id": "ID",
+      "dayOfWeek": "Day Of Week",
+      "startTime": "Start Time",
+      "endTime": "End Time",
+      "doctor": "Doctor"
+    }
+  }
+}

@@ -1,0 +1,177 @@
+<div>
+  <h2 id="page-heading" data-cy="AppointmentHeading">
+    <span jhiTranslate="medSlotApp.appointment.home.title">Appointments</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="medSlotApp.appointment.home.refreshListLabel">Обновить список</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-appointment"
+        [routerLink]="['/appointment/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="medSlotApp.appointment.home.createLabel">Создать новый Appointment</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  <jhi-filter [filters]="filters" />
+
+  @if (appointments().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="medSlotApp.appointment.home.notFound">Appointments не найдено</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="appointmentDateTime">
+              <div class="d-flex">
+                <span jhiTranslate="medSlotApp.appointment.appointmentDateTime">Appointment Date Time</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="status">
+              <div class="d-flex">
+                <span jhiTranslate="medSlotApp.appointment.status">Status</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="note">
+              <div class="d-flex">
+                <span jhiTranslate="medSlotApp.appointment.note">Note</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="clinic.id">
+              <div class="d-flex">
+                <span jhiTranslate="medSlotApp.appointment.clinic">Clinic</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="doctor.id">
+              <div class="d-flex">
+                <span jhiTranslate="medSlotApp.appointment.doctor">Doctor</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="patient.id">
+              <div class="d-flex">
+                <span jhiTranslate="medSlotApp.appointment.patient">Patient</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (appointment of appointments(); track trackId(appointment)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/appointment', appointment.id, 'view']">{{ appointment.id }}</a>
+              </td>
+              <td>{{ appointment.appointmentDateTime | formatMediumDatetime }}</td>
+              <td [jhiTranslate]="'medSlotApp.AppointmentStatus.' + (appointment.status ?? 'null')">
+                {{ { null: '', BOOKED: 'BOOKED', CANCELED: 'CANCELED', DONE: 'DONE' }[appointment.status ?? 'null'] }}
+              </td>
+              <td>{{ appointment.note }}</td>
+              <td>
+                @if (appointment.clinic) {
+                  <div>
+                    <a [routerLink]="['/clinic', appointment.clinic.id, 'view']">{{ appointment.clinic.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (appointment.doctor) {
+                  <div>
+                    <a [routerLink]="['/doctor', appointment.doctor.id, 'view']">{{ appointment.doctor.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (appointment.patient) {
+                  <div>
+                    <a [routerLink]="['/patient', appointment.patient.id, 'view']">{{ appointment.patient.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <button
+                    type="submit"
+                    [routerLink]="['/sms-notification']"
+                    [queryParams]="{ 'filter[appointmentId.in]': appointment.id }"
+                    class="btn btn-info btn-sm"
+                    data-cy="filterOtherEntityButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span
+                      class="d-none d-md-inline"
+                      jhiTranslate="entity.action.show"
+                      [translateValues]="{ otherEntity: ('medSlotApp.appointment.smsNotification' | translate) }"
+                      >Show Sms Notification</span
+                    >
+                  </button>
+                  <a [routerLink]="['/appointment', appointment.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Просмотр</span>
+                  </a>
+
+                  <a [routerLink]="['/appointment', appointment.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Изменить</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(appointment)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Удалить</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (appointments().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page, totalItems, itemsPerPage }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

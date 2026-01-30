@@ -1,0 +1,30 @@
+{
+  "medSlotApp": {
+    "appointment": {
+      "home": {
+        "title": "Appointments",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Yangi Appointment qo`shish",
+        "createOrEditLabel": "Appointmentni tahrirlash",
+        "notFound": "No Appointments found"
+      },
+      "created": "Appointment {{ param }} bilan qo`shildi",
+      "updated": "{{ param }}- Appointment saqlandi",
+      "deleted": "{{ param }}- Appointment o`chirildi",
+      "delete": {
+        "question": "{{ id }}- Appointmentni o`chirmoqchimisiz? "
+      },
+      "detail": {
+        "title": "Appointment"
+      },
+      "id": "ID",
+      "appointmentDateTime": "Appointment Date Time",
+      "status": "Status",
+      "note": "Note",
+      "smsNotification": "Sms Notification",
+      "clinic": "Clinic",
+      "doctor": "Doctor",
+      "patient": "Patient"
+    }
+  }
+}

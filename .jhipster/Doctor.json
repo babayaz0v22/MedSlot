@@ -1,0 +1,46 @@
+{
+  "annotations": {
+    "changelogDate": "20260129100621"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "entityTableName": "main_doctor",
+  "fields": [
+    {
+      "fieldName": "specialty",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "phone",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Doctor",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "doctorSchedule",
+      "otherEntityRelationshipName": "doctor",
+      "relationshipName": "doctorSchedule",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "appointment",
+      "otherEntityRelationshipName": "doctor",
+      "relationshipName": "appointment",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "clinic",
+      "relationshipName": "clinic",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

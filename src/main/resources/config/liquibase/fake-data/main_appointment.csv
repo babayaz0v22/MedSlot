@@ -1,0 +1,11 @@
+id;appointment_date_time;status;note
+1;2026-01-29T03:00:19;DONE;lest
+2;2026-01-29T03:12:51;CANCELED;focused elegantly
+3;2026-01-28T12:30:22;BOOKED;circa
+4;2026-01-28T11:03:08;BOOKED;yowza testing
+5;2026-01-29T04:18:34;BOOKED;psst
+6;2026-01-28T10:14:14;BOOKED;whoever
+7;2026-01-28T11:34:20;BOOKED;schlep impostor outrun
+8;2026-01-28T11:45:39;CANCELED;well-made slather
+9;2026-01-29T02:07:19;BOOKED;baa angle ultimately
+10;2026-01-29T04:39:34;DONE;immediate

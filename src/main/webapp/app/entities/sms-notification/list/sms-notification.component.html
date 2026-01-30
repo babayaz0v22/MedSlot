@@ -1,0 +1,181 @@
+<div>
+  <h2 id="page-heading" data-cy="SmsNotificationHeading">
+    <span jhiTranslate="medSlotApp.smsNotification.home.title">Sms Notifications</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="medSlotApp.smsNotification.home.refreshListLabel">Обновить список</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-sms-notification"
+        [routerLink]="['/sms-notification/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="medSlotApp.smsNotification.home.createLabel">Создать новый Sms Notification</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  <jhi-filter [filters]="filters" />
+
+  @if (smsNotifications().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="medSlotApp.smsNotification.home.notFound">Sms Notifications не найдено</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="phone">
+              <div class="d-flex">
+                <span jhiTranslate="medSlotApp.smsNotification.phone">Phone</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="message">
+              <div class="d-flex">
+                <span jhiTranslate="medSlotApp.smsNotification.message">Message</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="sendAt">
+              <div class="d-flex">
+                <span jhiTranslate="medSlotApp.smsNotification.sendAt">Send At</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="sentAt">
+              <div class="d-flex">
+                <span jhiTranslate="medSlotApp.smsNotification.sentAt">Sent At</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="status">
+              <div class="d-flex">
+                <span jhiTranslate="medSlotApp.smsNotification.status">Status</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="errorMessage">
+              <div class="d-flex">
+                <span jhiTranslate="medSlotApp.smsNotification.errorMessage">Error Message</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="clinic.id">
+              <div class="d-flex">
+                <span jhiTranslate="medSlotApp.smsNotification.clinic">Clinic</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="appointment.id">
+              <div class="d-flex">
+                <span jhiTranslate="medSlotApp.smsNotification.appointment">Appointment</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (smsNotification of smsNotifications(); track trackId(smsNotification)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/sms-notification', smsNotification.id, 'view']">{{ smsNotification.id }}</a>
+              </td>
+              <td>{{ smsNotification.phone }}</td>
+              <td>{{ smsNotification.message }}</td>
+              <td>{{ smsNotification.sendAt | formatMediumDatetime }}</td>
+              <td>{{ smsNotification.sentAt | formatMediumDatetime }}</td>
+              <td [jhiTranslate]="'medSlotApp.SmsStatus.' + (smsNotification.status ?? 'null')">
+                {{ { null: '', PENDING: 'PENDING', SENT: 'SENT', FAILED: 'FAILED' }[smsNotification.status ?? 'null'] }}
+              </td>
+              <td>{{ smsNotification.errorMessage }}</td>
+              <td>
+                @if (smsNotification.clinic) {
+                  <div>
+                    <a [routerLink]="['/clinic', smsNotification.clinic.id, 'view']">{{ smsNotification.clinic.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (smsNotification.appointment) {
+                  <div>
+                    <a [routerLink]="['/appointment', smsNotification.appointment.id, 'view']">{{ smsNotification.appointment.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/sms-notification', smsNotification.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Просмотр</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/sms-notification', smsNotification.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Изменить</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(smsNotification)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Удалить</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (smsNotifications().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page, totalItems, itemsPerPage }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,10 @@
+{
+  "medSlotApp": {
+    "AppointmentStatus": {
+      "null": "",
+      "BOOKED": "BOOKED",
+      "CANCELED": "CANCELED",
+      "DONE": "DONE"
+    }
+  }
+}

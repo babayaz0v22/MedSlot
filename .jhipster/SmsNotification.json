@@ -1,0 +1,58 @@
+{
+  "annotations": {
+    "changelogDate": "20260129100625"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "entityTableName": "main_sms_notification",
+  "fields": [
+    {
+      "fieldName": "phone",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "message",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "sendAt",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "sentAt",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "SmsStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "PENDING,SENT,FAILED"
+    },
+    {
+      "fieldName": "errorMessage",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "SmsNotification",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "clinic",
+      "relationshipName": "clinic",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "appointment",
+      "relationshipName": "appointment",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -1,0 +1,31 @@
+{
+  "medSlotApp": {
+    "smsNotification": {
+      "home": {
+        "title": "Sms Notifications",
+        "refreshListLabel": "Обновить список",
+        "createLabel": "Создать новый Sms Notification",
+        "createOrEditLabel": "Создать или отредактировать Sms Notification",
+        "notFound": "Sms Notifications не найдено"
+      },
+      "created": "Новый Sms Notification создан с идентификатором {{ param }}",
+      "updated": "Sms Notification обновлен с идентификатором {{ param }}",
+      "deleted": "Sms Notification удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Sms Notification {{ id }}?"
+      },
+      "detail": {
+        "title": "Sms Notification"
+      },
+      "id": "ID",
+      "phone": "Phone",
+      "message": "Message",
+      "sendAt": "Send At",
+      "sentAt": "Sent At",
+      "status": "Status",
+      "errorMessage": "Error Message",
+      "clinic": "Clinic",
+      "appointment": "Appointment"
+    }
+  }
+}

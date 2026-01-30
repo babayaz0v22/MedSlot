@@ -1,0 +1,28 @@
+{
+  "medSlotApp": {
+    "doctor": {
+      "home": {
+        "title": "Doctors",
+        "refreshListLabel": "Обновить список",
+        "createLabel": "Создать новый Doctor",
+        "createOrEditLabel": "Создать или отредактировать Doctor",
+        "notFound": "Doctors не найдено"
+      },
+      "created": "Новый Doctor создан с идентификатором {{ param }}",
+      "updated": "Doctor обновлен с идентификатором {{ param }}",
+      "deleted": "Doctor удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Doctor {{ id }}?"
+      },
+      "detail": {
+        "title": "Doctor"
+      },
+      "id": "ID",
+      "specialty": "Specialty",
+      "phone": "Phone",
+      "doctorSchedule": "Doctor Schedule",
+      "appointment": "Appointment",
+      "clinic": "Clinic"
+    }
+  }
+}

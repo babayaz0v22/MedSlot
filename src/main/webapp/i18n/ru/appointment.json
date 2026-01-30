@@ -1,0 +1,30 @@
+{
+  "medSlotApp": {
+    "appointment": {
+      "home": {
+        "title": "Appointments",
+        "refreshListLabel": "Обновить список",
+        "createLabel": "Создать новый Appointment",
+        "createOrEditLabel": "Создать или отредактировать Appointment",
+        "notFound": "Appointments не найдено"
+      },
+      "created": "Новый Appointment создан с идентификатором {{ param }}",
+      "updated": "Appointment обновлен с идентификатором {{ param }}",
+      "deleted": "Appointment удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Appointment {{ id }}?"
+      },
+      "detail": {
+        "title": "Appointment"
+      },
+      "id": "ID",
+      "appointmentDateTime": "Appointment Date Time",
+      "status": "Status",
+      "note": "Note",
+      "smsNotification": "Sms Notification",
+      "clinic": "Clinic",
+      "doctor": "Doctor",
+      "patient": "Patient"
+    }
+  }
+}

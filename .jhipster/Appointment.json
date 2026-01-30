@@ -1,0 +1,57 @@
+{
+  "annotations": {
+    "changelogDate": "20260129100624"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "entityTableName": "main_appointment",
+  "fields": [
+    {
+      "fieldName": "appointmentDateTime",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "AppointmentStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "BOOKED,CANCELED,DONE"
+    },
+    {
+      "fieldName": "note",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Appointment",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "smsNotification",
+      "otherEntityRelationshipName": "appointment",
+      "relationshipName": "smsNotification",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "clinic",
+      "relationshipName": "clinic",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "doctor",
+      "relationshipName": "doctor",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "patient",
+      "relationshipName": "patient",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

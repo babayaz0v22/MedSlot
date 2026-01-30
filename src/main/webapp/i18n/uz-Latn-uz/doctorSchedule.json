@@ -1,0 +1,27 @@
+{
+  "medSlotApp": {
+    "doctorSchedule": {
+      "home": {
+        "title": "Doctor Schedules",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Yangi Doctor Schedule qo`shish",
+        "createOrEditLabel": "Doctor Scheduleni tahrirlash",
+        "notFound": "No Doctor Schedules found"
+      },
+      "created": "Doctor Schedule {{ param }} bilan qo`shildi",
+      "updated": "{{ param }}- Doctor Schedule saqlandi",
+      "deleted": "{{ param }}- Doctor Schedule o`chirildi",
+      "delete": {
+        "question": "{{ id }}- Doctor Scheduleni o`chirmoqchimisiz? "
+      },
+      "detail": {
+        "title": "Doctor Schedule"
+      },
+      "id": "ID",
+      "dayOfWeek": "Day Of Week",
+      "startTime": "Start Time",
+      "endTime": "End Time",
+      "doctor": "Doctor"
+    }
+  }
+}

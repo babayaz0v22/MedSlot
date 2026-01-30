@@ -1,0 +1,27 @@
+{
+  "medSlotApp": {
+    "patient": {
+      "home": {
+        "title": "Patients",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Янги Patient қўшиш",
+        "createOrEditLabel": "Patientни таҳрирлаш",
+        "notFound": "No Patients found"
+      },
+      "created": "Patient {{ param }} билан қўшилди.",
+      "updated": "{{ param }}- Patient сақланди.",
+      "deleted": "{{ param }}- Patient ўчирилди.",
+      "delete": {
+        "question": "{{ id }}- Patientни ўчирмоқчимисиз? "
+      },
+      "detail": {
+        "title": "Patient"
+      },
+      "id": "ID",
+      "fullName": "Full Name",
+      "phone": "Phone",
+      "appointment": "Appointment",
+      "clinic": "Clinic"
+    }
+  }
+}

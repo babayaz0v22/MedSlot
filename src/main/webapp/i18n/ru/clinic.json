@@ -1,0 +1,35 @@
+{
+  "medSlotApp": {
+    "clinic": {
+      "home": {
+        "title": "Clinics",
+        "refreshListLabel": "Обновить список",
+        "createLabel": "Создать новый Clinic",
+        "createOrEditLabel": "Создать или отредактировать Clinic",
+        "notFound": "Clinics не найдено"
+      },
+      "created": "Новый Clinic создан с идентификатором {{ param }}",
+      "updated": "Clinic обновлен с идентификатором {{ param }}",
+      "deleted": "Clinic удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Clinic {{ id }}?"
+      },
+      "detail": {
+        "title": "Clinic"
+      },
+      "id": "ID",
+      "name": "Name",
+      "phone": "Phone",
+      "address": "Address",
+      "active": "Active",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date",
+      "doctor": "Doctor",
+      "patient": "Patient",
+      "appointment": "Appointment",
+      "smsNotification": "Sms Notification"
+    }
+  }
+}

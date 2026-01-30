@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (patient(); as patientRef) {
+      <div>
+        <h2 data-cy="patientDetailsHeading"><span jhiTranslate="medSlotApp.patient.detail.title">Patient</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ patientRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="medSlotApp.patient.fullName">Full Name</span></dt>
+          <dd>
+            <span>{{ patientRef.fullName }}</span>
+          </dd>
+          <dt><span jhiTranslate="medSlotApp.patient.phone">Phone</span></dt>
+          <dd>
+            <span>{{ patientRef.phone }}</span>
+          </dd>
+          <dt><span jhiTranslate="medSlotApp.patient.clinic">Clinic</span></dt>
+          <dd>
+            @if (patient()!.clinic) {
+              <div>
+                <a [routerLink]="['/clinic', patient()!.clinic?.id, 'view']">{{ patientRef.clinic?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Назад</span>
+        </button>
+
+        <button type="button" [routerLink]="['/patient', patientRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Изменить</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

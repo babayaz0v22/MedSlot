@@ -1,0 +1,145 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-appointment-heading"
+        data-cy="AppointmentCreateUpdateHeading"
+        jhiTranslate="medSlotApp.appointment.home.createOrEditLabel"
+      >
+        Создать или отредактировать Appointment
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="medSlotApp.appointment.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let appointmentDateTimeRef = editForm.get('appointmentDateTime')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_appointmentDateTime" jhiTranslate="medSlotApp.appointment.appointmentDateTime"
+            >Appointment Date Time</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_appointmentDateTime"
+              data-cy="appointmentDateTime"
+              type="datetime-local"
+              class="form-control"
+              name="appointmentDateTime"
+              formControlName="appointmentDateTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (appointmentDateTimeRef.invalid && (appointmentDateTimeRef.dirty || appointmentDateTimeRef.touched)) {
+            <div>
+              @if (editForm.get('appointmentDateTime')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Это поле обязательно к заполнению.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('appointmentDateTime')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >Это поле должно быть дата и время.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let statusRef = editForm.get('status')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_status" jhiTranslate="medSlotApp.appointment.status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'medSlotApp.AppointmentStatus.null' | translate }}</option>
+            @for (appointmentStatus of appointmentStatusValues; track $index) {
+              <option [value]="appointmentStatus">{{ 'medSlotApp.AppointmentStatus.' + appointmentStatus | translate }}</option>
+            }
+          </select>
+          @if (statusRef.invalid && (statusRef.dirty || statusRef.touched)) {
+            <div>
+              @if (editForm.get('status')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Это поле обязательно к заполнению.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_note" jhiTranslate="medSlotApp.appointment.note">Note</label>
+          <input type="text" class="form-control" name="note" id="field_note" data-cy="note" formControlName="note" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_clinic" jhiTranslate="medSlotApp.appointment.clinic">Clinic</label>
+          <select
+            class="form-control"
+            id="field_clinic"
+            data-cy="clinic"
+            name="clinic"
+            formControlName="clinic"
+            [compareWith]="compareClinic"
+          >
+            <option [ngValue]="null"></option>
+            @for (clinicOption of clinicsSharedCollection; track $index) {
+              <option [ngValue]="clinicOption">{{ clinicOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_doctor" jhiTranslate="medSlotApp.appointment.doctor">Doctor</label>
+          <select
+            class="form-control"
+            id="field_doctor"
+            data-cy="doctor"
+            name="doctor"
+            formControlName="doctor"
+            [compareWith]="compareDoctor"
+          >
+            <option [ngValue]="null"></option>
+            @for (doctorOption of doctorsSharedCollection; track $index) {
+              <option [ngValue]="doctorOption">{{ doctorOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_patient" jhiTranslate="medSlotApp.appointment.patient">Patient</label>
+          <select
+            class="form-control"
+            id="field_patient"
+            data-cy="patient"
+            name="patient"
+            formControlName="patient"
+            [compareWith]="comparePatient"
+          >
+            <option [ngValue]="null"></option>
+            @for (patientOption of patientsSharedCollection; track $index) {
+              <option [ngValue]="patientOption">{{ patientOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Отмена</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Сохранить</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

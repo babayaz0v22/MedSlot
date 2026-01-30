@@ -1,0 +1,31 @@
+{
+  "medSlotApp": {
+    "smsNotification": {
+      "home": {
+        "title": "Sms Notifications",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Yangi Sms Notification qo`shish",
+        "createOrEditLabel": "Sms Notificationni tahrirlash",
+        "notFound": "No Sms Notifications found"
+      },
+      "created": "Sms Notification {{ param }} bilan qo`shildi",
+      "updated": "{{ param }}- Sms Notification saqlandi",
+      "deleted": "{{ param }}- Sms Notification o`chirildi",
+      "delete": {
+        "question": "{{ id }}- Sms Notificationni o`chirmoqchimisiz? "
+      },
+      "detail": {
+        "title": "Sms Notification"
+      },
+      "id": "ID",
+      "phone": "Phone",
+      "message": "Message",
+      "sendAt": "Send At",
+      "sentAt": "Sent At",
+      "status": "Status",
+      "errorMessage": "Error Message",
+      "clinic": "Clinic",
+      "appointment": "Appointment"
+    }
+  }
+}

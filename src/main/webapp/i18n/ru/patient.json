@@ -1,0 +1,27 @@
+{
+  "medSlotApp": {
+    "patient": {
+      "home": {
+        "title": "Patients",
+        "refreshListLabel": "Обновить список",
+        "createLabel": "Создать новый Patient",
+        "createOrEditLabel": "Создать или отредактировать Patient",
+        "notFound": "Patients не найдено"
+      },
+      "created": "Новый Patient создан с идентификатором {{ param }}",
+      "updated": "Patient обновлен с идентификатором {{ param }}",
+      "deleted": "Patient удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Patient {{ id }}?"
+      },
+      "detail": {
+        "title": "Patient"
+      },
+      "id": "ID",
+      "fullName": "Full Name",
+      "phone": "Phone",
+      "appointment": "Appointment",
+      "clinic": "Clinic"
+    }
+  }
+}

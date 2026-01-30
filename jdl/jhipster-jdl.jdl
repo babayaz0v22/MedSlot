@@ -1,0 +1,78 @@
+enum AppointmentStatus {
+  BOOKED,
+  CANCELED,
+  DONE
+}
+
+enum SmsStatus {
+  PENDING,
+  SENT,
+  FAILED
+}
+
+entity Clinic(main_clinic) {
+  name String required,
+  phone String,
+  address String,
+  active Boolean required,
+  createdBy String required maxlength(50),
+  createdDate ZonedDateTime,
+  lastModifiedBy String maxlength(50),
+  lastModifiedDate ZonedDateTime
+}
+
+entity Doctor(main_doctor) {
+  specialty String required,
+  phone String,
+}
+
+entity Patient(main_patient) {
+  fullName String required,
+  phone String required,
+}
+
+entity DoctorSchedule(main_doctor_schedule) {
+  dayOfWeek Integer required min(1) max(7),
+  startTime ZonedDateTime required,
+  endTime ZonedDateTime required,
+}
+
+entity Appointment(main_appointment) {
+  appointmentDateTime ZonedDateTime required,
+  status AppointmentStatus required,
+  note String,
+}
+
+entity SmsNotification(main_sms_notification) {
+  phone String required,
+  message String required,
+  sendAt ZonedDateTime required,
+  sentAt ZonedDateTime,
+  status SmsStatus required,
+  errorMessage String,
+}
+
+relationship OneToMany {
+  Clinic to Doctor{clinic}
+  Clinic to Patient{clinic}
+  Clinic to Appointment{clinic}
+  Clinic to SmsNotification{clinic}
+}
+
+relationship OneToMany {
+  Doctor to DoctorSchedule{doctor}
+  Doctor to Appointment{doctor}
+}
+
+relationship OneToMany {
+  Patient to Appointment{patient}
+}
+
+relationship OneToMany {
+  Appointment to SmsNotification{appointment}
+}
+
+paginate * with pagination
+dto * with mapstruct
+service * with serviceClass
+filter Appointment, SmsNotification, Doctor

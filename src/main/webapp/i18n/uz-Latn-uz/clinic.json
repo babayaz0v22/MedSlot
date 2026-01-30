@@ -1,0 +1,35 @@
+{
+  "medSlotApp": {
+    "clinic": {
+      "home": {
+        "title": "Clinics",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Yangi Clinic qo`shish",
+        "createOrEditLabel": "Clinicni tahrirlash",
+        "notFound": "No Clinics found"
+      },
+      "created": "Clinic {{ param }} bilan qo`shildi",
+      "updated": "{{ param }}- Clinic saqlandi",
+      "deleted": "{{ param }}- Clinic o`chirildi",
+      "delete": {
+        "question": "{{ id }}- Clinicni o`chirmoqchimisiz? "
+      },
+      "detail": {
+        "title": "Clinic"
+      },
+      "id": "ID",
+      "name": "Name",
+      "phone": "Phone",
+      "address": "Address",
+      "active": "Active",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date",
+      "doctor": "Doctor",
+      "patient": "Patient",
+      "appointment": "Appointment",
+      "smsNotification": "Sms Notification"
+    }
+  }
+}
